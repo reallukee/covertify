@@ -1,0 +1,17 @@
+{
+    "lang": "en-us",
+    "name": "Covertify",
+    "short_name": "Covertify",
+    "description": "Uno Strumento per Creare Semplici Cover per le tue Playlist di Spotify!",
+    "start_url": "/",
+    "background_color": "#1DB954",
+    "theme_color": "#1DB954",
+    "orientation": "any",
+    "display": "standalone",
+    "icons": [
+        {
+            "src": "./assets/images/favicon.png",
+            "sizes": "512x512"
+        }
+    ]
+}

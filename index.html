@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="it-it" data-bs-theme="dark">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="Uno Strumento per Creare Semplici Cover per le tue Playlist di Spotify!" />
+        <meta name="keywords" content="Covertify" />
+        <meta name="author" content="Luca Pollicino" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Covertify</title>
+        <link rel="manifest" type="text/json" href="./manifest.json" />
+        <link rel="stylesheet" type="text/css" href="./assets/styles/style.css" />
+        <link rel="icon" type="image/png" href="./assets/images/favicon.png" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    </head>
+    <body class="d-flex flex-column">
+        <div id="content">
+            <nav class="navbar navbar-expand-lg" style="background: var(--spotify-green);">
+                <div class="container-fluid col-8">
+                    <a class="navbar-brand text-dark" href="index.html#">
+                        <img src="./assets/images/favicon.png" alt="Logo" width="30" height="30" class="align-text-top me-2" />
+                        
+                        Covertify
+                    </a>
+
+                    <div class="collapse navbar-collapse">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="#cover-preview">
+                                    Anteprima Cover
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="#cover-background">
+                                    Sfondo Cover
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="#cover-title">
+                                    Titolo Cover
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="#cover-covertify">
+                                    Covertify Cover
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="#playlist-preview">
+                                    Anteprima Playlist
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <form class="d-flex" role="search">
+                        <select id="theme" class="form-control text-dark text-center border-dark bg-transparent" onchange="setTheme()">
+                            <option value="auto" selected>Tema: Auto</option>
+                            <option value="light">Tema: Chiaro</option>
+                            <option value="dark">Tema: Scuro</option>
+                        </select>
+                    </form>
+                </div>
+            </nav>
+
+            <div class="container col-8 my-4">
+                <div class="row row-cols-1 row-cols-md-1 g-4 mb-1">
+                    <div class="col">
+                        <div class="card">
+                            <a id="cover-preview"></a>
+
+                            <div class="card-header">
+                                Anteprima Cover
+                            </div>
+
+                            <div class="card-body">
+                                <div id="coverBorder" class="border-secondary">
+                                    <div id="cover">
+                                        <img id="coverBackground" src="./assets/images/cover.png" alt="Cover" />
+    
+                                        <p id="coverTitle">
+                                            Playlist
+                                        </p>
+    
+                                        <img id="coverCovertify" src="./assets/images/Covertify_Green.png" alt="Covertify" />
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="card-footer">
+                                <div class="input-group my-2">
+                                    <button class="btn btn-outline-success" onclick="defaultCover()">
+                                        Ripristina
+                                    </button>
+
+                                    <button class="btn btn-outline-success" onclick="previewCover()">
+                                        Anteprima
+                                    </button>
+
+                                    <input id="coverName" class="form-control" type="text" value="covertify.png" />
+                                    
+                                    <button class="btn btn-success" onclick="downloadCover()">
+                                        Download
+                                    </button>                         
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row row-cols-1 row-cols-md-3 g-4 my-1">
+                    <div class="col d-flex">
+                        <a id="cover-background"></a>
+
+                        <div class="card">
+                            <div class="card-header">
+                                Sfondo Cover
+                            </div>
+
+                            <div class="card-body d-flex flex-column">
+                                <div class="mb-3">
+                                    <label for="coverBackgroundPicture" class="mb-1">
+                                        Scegli un Immagine
+                                    </label>
+        
+                                    <input id="coverBackgroundPicture" class="form-control" type="file" onchange="coverBackgroundPicture(event)" />
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="coverBackgroundColor" class="mb-1">
+                                        Scegli un Colore
+                                    </label>
+
+                                    <select id="coverBackgroundColor" class="form-control mb-1" onchange="coverBackgroundColor()">
+                                        <option value="--spotify-green">Verde Spotify</option>
+                                        <option value="--spotify-white">Bianco Spotify</option>
+                                        <option value="--spotify-black" selected>Nero Spotify</option>
+                                    </select>
+
+                                    <input id="coverBackgroundCustomColor" class="form-control" type="color" onchange="coverBackgroundCustomColor()" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cold-flex">
+                        <a id="cover-title"></a>
+
+                        <div class="card">
+                            <div class="card-header">
+                                Titolo Cover
+                            </div>
+
+                            <div class="card-body d-flex flex-column">
+                                <div class="mb-3">
+                                    <label for="coverTitleValue" class="mb-1">
+                                        Valore Titolo
+                                    </label>
+
+                                    <textarea id="coverTitleValue" class="form-control" rows="1" cols="1" onchange="coverTitleValue()">Playlist</textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="coverTitleColor" class="mb-1">
+                                        Colore Titolo
+                                    </label>
+
+                                    <select id="coverTitleColor" class="form-control mb-1" onchange="coverTitleColor()">
+                                        <option value="--spotify-green">Verde Spotify</option>
+                                        <option value="--spotify-white" selected>Bianco Spotify</option>
+                                        <option value="--spotify-black">Nero Spotify</option>
+                                    </select>
+
+                                    <input id="coverTitleCustomColor" class="form-control" type="color" onchange="coverTitleCustomColor()" />
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="coverTitlePosition" class="mb-1">
+                                        Posizione Titolo
+                                    </label>
+
+                                    <select id="coverTitlePosition" class="form-control" onchange="coverTitlePosition()">
+                                        <option value="1" selected>Angolo Alto Sinistro</option>
+                                        <option value="2">Angolo Alto Destro</option>
+                                        <option value="3">Centro</option>
+                                        <option value="4">Angolo Basso Sinistro</option>
+                                        <option value="5">Angolo Basso Destro</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="coverTitleMargin" class="mb-1">
+                                        Margini Titolo
+                                    </label>
+
+                                    <input id="coverTitleMargin" class="form-range" type="range" value="1" min="1" max="5" onchange="coverTitleMargin()" />
+                                </div>
+
+                                <div>
+                                    <label for="coverTitleSize" class="mb-1">
+                                        Dimensione Titolo
+                                    </label>
+
+                                    <input id="coverTitleSize" class="form-range" type="range" value="2" min="1" max="5" onchange="coverTitleSize()" />  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col d-flex">
+                        <a id="cover-covertify"></a>
+
+                        <div class="card">
+                            <div class="card-header">
+                                Covertify Icon/Logo Cover
+                            </div>
+
+                            <div class="card-body d-flex flex-column">
+                                <div class="form-check mb-3">
+                                    <input id="coverCovertifyShow" class="form-check-input" type="checkbox" checked="true" onchange="coverCovertifyShow()" />
+                                    
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Mostra Icona/Logo Covertify
+                                    </label>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="coverCovertifyColor" class="mb-1">
+                                        Colore Icona/Logo Covertify
+                                    </label>
+                                    
+                                    <select id="coverCovertifyColor" class="form-control" onchange="coverCovertifyColor()">
+                                        <!--
+                                        <option value="./assets/images/Spotify_Icon_RGB_Green.png">Green Icon</option>
+                                        <option value="./assets/images/Spotify_Icon_RGB_White.png">White Icon</option>
+                                        <option value="./assets/images/Spotify_Icon_RGB_Black.png">Black Icon</option>
+                                        <option value="./assets/images/Spotify_Logo_RGB_Green.png">Green Logo</option>
+                                        <option value="./assets/images/Spotify_Logo_RGB_White.png">White Logo</option>
+                                        <option value="./assets/images/Spotify_Logo_RGB_Black.png">Black Logo</option>
+                                        -->
+                                        <option value="./assets/images/Covertify_Green.png">Green Icon</option>
+                                        <option value="./assets/images/Covertify_White.png">White Icon</option>
+                                        <option value="./assets/images/Covertify_Black.png">Black Icon</option>
+                                    </select>   
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="coverCovertifyPosition" class="mb-1">
+                                        Posizione Icona/Logo Covertify
+                                    </label>
+
+                                    <select id="coverCovertifyPosition" class="form-control" onchange="coverCovertifyPosition()">
+                                        <option value="1">Angolo Alto Sinistro</option>
+                                        <option value="2">Angolo Alto Destro</option>
+                                        <option value="3">Centro</option>
+                                        <option value="4">Angolo Basso Sinistro</option>
+                                        <option value="5" selected>Angolo Basso Destro</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="coverCovertifyMargin" class="mb-1">
+                                        Margini Icona/Logo Covertify
+                                    </label>
+
+                                    <input id="coverCovertifyMargin" class="form-range" type="range" value="1" min="1" max="5" onchange="coverCovertifyMargin()" />      
+                                </div>
+                            
+                                <div>
+                                    <label for="coverCovertifySize" class="mb-1">
+                                        Dimensione Icona/Logo Covertify
+                                    </label>
+
+                                    <input id="coverCovertifySize" class="form-range" type="range" value="50" min="25" max="100" onchange="coverCovertifySize()" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row row-cols-1 row-cols-md-1 g-4 mt-1">
+                    <div class="col d-flex">
+                        <a id="playlist-preview"></a>
+
+                        <div class="card">
+                            <div class="card-header">
+                                Anteprima Playlist
+                            </div>
+
+                            <div class="card-body">
+                                <div id="playlistBorder" class="border-secondary">
+                                    <div id="playlist">
+                                        <img id="playlistCover" src="./assets/images/cover.png" alt="Cover" />
+
+                                        <p id="playlistType">Playlist Pubblica</p>
+
+                                        <h1 id="playlistTitle">Playlist</h1>
+
+                                        <p id="playlistDescription">Una Semplice Playlist</p>
+
+                                        <p id="playlistAuthor">Covertify</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="border-top">
+            <footer class="container col-8 d-flex flex-wrap justify-content-between align-items-center p-3 ">
+                <div class="d-flex align-items-center">
+                    <a href="index.html#" class="me-2">
+                        <img src="./assets/images/favicon.png" width="24px" height="24px" />
+                    </a>
+
+                    <small>
+                        Covertify 1.0 Creato da
+
+                        <a class="text-success" href="https://github.com/reallukee/" target="_blank">
+                            Luca Pollicino
+                        </a>
+                    </small>
+                </div>
+                
+                <ul class="nav d-flex align-items-center">
+                    <li class="ms-3">
+                        <a class="text-success" href="https://github.com/reallukee/covertify" target="_blank">
+                            GitHub
+                        </a>
+                    </li>
+                </ul>
+            </footer>
+        </div>
+ 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+        <script src="./assets/scripts/app.js"></script>
+
+        <script type="text/javascript">
+            if (localStorage.getItem('covertify-theme') != null)
+            {
+                var theme = document.getElementById('theme');
+
+                theme.value = localStorage.getItem('covertify-theme');
+            }
+             
+            setTheme();
+
+            previewCover();
+        </script>
+    </body>
+</html>

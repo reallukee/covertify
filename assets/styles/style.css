@@ -1,0 +1,200 @@
+@font-face {
+    font-family: 'Spotify Font';
+    src: url(../fonts/GothamBold.ttf);
+}
+
+:root {
+    --spotify-green: #1DB954;
+    --spotify-white: #FFFFFF;
+    --spotify-black: #191414;
+}
+
+
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: var(--spotify-black);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--spotify-white);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--spotify-green);
+}
+
+
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+#content {
+    display: block;
+    flex: 1 0 auto;
+}
+
+
+
+#coverBorder {
+    width: fit-content;
+    height: fit-content;
+    margin: 0 auto;
+    padding: 0;
+
+    border: 1px solid #000;
+}
+
+#cover {
+    width: 300px;
+    height: 300px;
+    max-width: 300px;
+    max-height: 300px;
+    margin: 0 auto;
+    padding: 0;
+
+    color: #EEE;
+    background: #111;
+    font-family: 'Spotify Font', sans-serif;
+
+    display: block;
+
+    position: relative;
+}
+
+#coverBackground {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#coverTitle {
+    width: auto;
+    height: auto;
+    margin: 1rem;
+    padding: 0;
+
+    font-size: 2rem;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#coverCovertify {
+    width: auto;
+    height: 50px;
+    min-width: 21px;
+    min-height: 21px;
+    margin: 1rem;
+
+    padding: 0;
+    
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+
+
+.card {
+    width: 100%;
+    height: auto;
+}
+
+.btn.btn-success {
+    border: 1px solid var(--spotify-green) !important;
+    background: var(--spotify-green) !important;
+}
+.btn.btn-success:hover {
+    color: var(--spotify-green) !important;
+    background: transparent !important;
+}
+
+.btn.btn-outline-success {
+    border: 1px solid var(--spotify-green) !important;
+    color: var(--spotify-green) !important;
+}
+.btn.btn-outline-success:hover {
+    color: #EEE !important;
+    background: var(--spotify-green) !important;
+}
+
+
+
+#playlistBorder {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0;
+
+    border: 1px solid #000;
+}
+
+#playlist {
+    width: 100%;
+    height: 340px;
+    max-width: 100%;
+    max-height: 340px;
+    margin: 0 auto;
+    padding: 0;
+
+    color: var(--spotify-white);
+    background: var(--spotify-black);
+    font-family: 'Spotify Font', sans-serif;
+
+    display: block;
+
+    position: relative;
+}
+
+#playlistCover {
+    width: 232px;
+    height: 232px;
+
+    position: absolute;
+    top: 84px;
+    left: 24px;
+}
+#playlistType {
+    font-size: .8rem;
+
+    position: absolute;
+    top: 120px;
+    left: 296px;
+}
+#playlistTitle {
+    font-size: 4rem;
+
+    position: absolute;
+    top: 150px;
+    left: 296px;
+}
+#playlistDescription {
+    font-size: .8rem;
+
+    position: absolute;
+    top: 240px;
+    left: 296px;
+}
+#playlistAuthor {
+    font-size: .8rem;
+
+    position: absolute;
+    top: 270px;
+    left: 296px;
+}
+
+
+
+@media screen and (max-width: 800px) {
+    html {
+        display: none !important;
+    }
+}
