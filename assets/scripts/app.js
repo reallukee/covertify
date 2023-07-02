@@ -268,10 +268,11 @@ function downloadCover()
     html2canvas(cover, { allowTaint: true }).then(function (canvas) {
         var link = document.createElement('a');
         document.body.appendChild(link);
-        link.download = coverName.value;
+        link.download = coverName.value + '.png';
         link.href = canvas.toDataURL();
         link.target = '_blank';
         link.click();
+        document.body.removeChild(link);
     });
 }
 
@@ -284,7 +285,62 @@ function previewCover()
         playlistCover.src = canvas.toDataURL();
     });
 }
+
 function defaultCover()
 {
     window.location.reload();
+}
+
+
+
+function playlistBackground()
+{
+    var playlist = document.getElementById('playlist');
+    var playlistBackground = document.getElementById('playlistBackground');
+
+    playlist.style.background = playlistBackground.value;
+}
+
+function playlistCustomBackground()
+{
+    var playlist = document.getElementById('playlist');
+    var playlistCustomBackground = document.getElementById('playlistCustomBackground');
+
+    playlist.style.background = 'linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, ' + playlistCustomBackground.value + ' 100%)';
+}
+
+
+
+function openProject()
+{
+    var coverBackground = document.getElementById('coverBackground');
+    var coverProjectSource = document.getElementById('coverProjectSource');
+
+    var project = JSON.parse(coverProjectSource.innerText);
+}
+
+function saveProject()
+{
+    var coverBackground = document.getElementById('coverBackground');
+    var coverProjectSource = document.getElementById('coverProjectSource');
+
+    html2canvas(coverBackground, { allowTaint: true }).then(function (canvas) {
+        var project = {
+            filename: document.getElementById('coverName').value,
+            coverBackgroundPicture: canvas.toDataURL(),
+            coverBackgroundColor: document.getElementById('coverBackground').style.background,
+            coverTitleValue: document.getElementById('coverTitle').innerText,
+            coverTitleColor: document.getElementById('coverTitle').style.color,
+            coverTitlePosition: document.getElementById('coverTitlePosition').value,
+            coverTitleMargin: document.getElementById('coverTitle').style.margin,
+            coverTitleSize: document.getElementById('coverTitle').style.fontSize,
+            coverCovertifyShow: document.getElementById('coverCovertifyShow').checked,
+            coverCovertifyColor: document.getElementById('coverCovertifyColor').value,
+            coverCovertifyPosition: document.getElementById('coverCovertifyPosition').value,
+            coverCovertifyMargin: document.getElementById('coverCovertify').style.margin,
+            coverCovertifySize: document.getElementById('coverCovertify').style.height
+        };
+
+        coverProjectSource.innerText = JSON.stringify(project, null, 2);
+    });
 }
