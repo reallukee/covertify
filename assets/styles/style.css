@@ -77,10 +77,13 @@ html, body {
 #coverTitle {
     width: auto;
     height: auto;
-    margin: 1rem;
+    margin: 2rem;
     padding: 0;
 
     font-size: 2rem;
+
+    letter-spacing: 0px;
+    line-height: 30px;
 
     position: absolute;
     top: 0;
@@ -108,6 +111,7 @@ html, body {
     height: auto;
 }
 
+/*
 .btn.btn-success {
     border: 1px solid var(--spotify-green) !important;
     background: var(--spotify-green) !important;
@@ -125,12 +129,13 @@ html, body {
     color: #EEE !important;
     background: var(--spotify-green) !important;
 }
+*/
 
 
 
 #playlistBorder {
     width: 100%;
-    height: 100%;
+    height: 400px;
     margin: 0 auto;
     padding: 0;
 
@@ -139,9 +144,9 @@ html, body {
 
 #playlist {
     width: 100%;
-    height: 400px;
+    height: 100%;
     max-width: 100%;
-    max-height: 400px;
+    max-height: 100%;
     margin: 0 auto;
     padding: 0;
 
@@ -200,12 +205,6 @@ html, body {
 }
 
 
-
-@media screen and (max-width: 1000px) {
-    #playlistBorder {
-        display: none;
-    }
-}
 
 @media screen and (max-width: 1000px) {
     html {

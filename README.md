@@ -14,4 +14,4 @@ Covertify non è affiliato a Spotify AB.
 
 # Licenza
 
-Questo progetto è sotto licenza  [MIT](./LICENSE).
+Questo progetto è sotto licenza [MIT](./LICENSE).
